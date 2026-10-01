@@ -1,27 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diario del desarrollador</title>
-    <link rel="stylesheet" href="estilos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel Ramírez - DWEC</title>
+  
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-    <nav id="menu">
-        <ul>
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="trabajo1.html">TRABAJO 1</a></li>
-        </ul>
-        <button id="modonoche">🌙 Modo</button>
-    </nav>
+  <h1>Mis Videojuegos Favoritos</h1>
 
-    <h1 id="titulo">Diario del desarrollador</h1>
-    <p>Soy Daniel Ramírez y este es mi primer proyecto de DWEC.</p>
+  <!-- Tabla de Videojuegos  -->
+  <table id="tabla-juegos">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Compañía</th>
+        <th>Plataforma</th>
+        <th>Valoración</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Las filas se insertan dinámicamente desde JavaScript -->
+    </tbody>
+  </table>
 
-    <button id="mi-boton">Púlsame</button>
-    <p id="mensaje-contador"></p>
+  <!-- Formulario (Reto Final) -->
+  <section class="formulario-container">
+    <h2>Añadir Nuevo Videojuego</h2>
+    <form id="form-juego">
+      <div class="campo">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" placeholder="Ej. Elden Ring" required>
+      </div>
 
-    <script src="app.js"></script>
+      <div class="campo">
+        <label for="compania">Compañía:</label>
+        <input type="text" id="compania" placeholder="Ej. FromSoftware" required>
+      </div>
+
+      <div class="campo">
+        <label for="plataforma">Plataforma:</label>
+        <select id="plataforma" required>
+          <option value="">Selecciona una opción</option>
+          <option value="PC">PC</option>
+          <option value="PlayStation 5">PlayStation 5</option>
+          <option value="Xbox Series X">Xbox Series X</option>
+          <option value="Nintendo Switch">Nintendo Switch</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="valoracion">Valoración (0-10):</label>
+        <input type="number" id="valoracion" min="0" max="10" step="0.1" placeholder="Ej. 9.5" required>
+      </div>
+
+      <div class="campo">
+        <label for="precio">Precio (€):</label>
+        <input type="number" id="precio" min="0" step="0.01" placeholder="Ej. 59.99" required>
+      </div>
+
+      <button type="button" id="btn-anadir">Añadir juego</button>
+    </form>
+  </section>
+
+  <script src="app.js"></script>
 </body>
 </html>

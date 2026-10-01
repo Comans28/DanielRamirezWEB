@@ -1,61 +1,84 @@
+/* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #22272e;
-    color: #adbac7;
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  padding: 20px;
 }
 
-#menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #2d333b;
-    padding: 10px 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+h1 {
+  text-align: center;
 }
 
-#menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 15px;
+/* Estilos de la tabla */
+table {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #1e1e1e;
 }
 
-#menu a {
-    color: #58a6ff;
-    text-decoration: none;
-    font-weight: bold;
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #333;
 }
 
-#menu a:hover {
-    color: #1f6feb;
+th {
+  background-color: #2b2b2b;
 }
 
-#mi-boton {
-    background-color: #238636;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
+/* Estilos para el formulario  */
+.formulario-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #2b2b2b;
+  border-radius: 8px;
+  color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-#mi-boton:hover {
-    background-color: #2ea043;
+.formulario-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-body.tema-claro {
-    background-color: #ffffff;
-    color: #1f2328;
+.campo {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
-body.tema-claro #menu {
-    background-color: #f6f8fa;
+.campo label {
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-body.tema-claro #menu a {
-    color: #0969da;
+.campo input, .campo select {
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #1e1e1e;
+  color: #fff;
+  font-size: 14px;
+}
+
+#btn-anadir {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+#btn-anadir:hover {
+  background-color: #0056b3;
 }
