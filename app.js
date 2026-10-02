@@ -31,7 +31,7 @@ let movimientos = [
   { id: 6, concepto: "Factura de Luz", importe: -85.20, categoria: "Hogar", fecha: "2026-10-06" }
 ];
 // NIVEL 03 // Cálculos con funciones y bucles
-// ==========================================
+
 
 /**
  * Recorre el array con un bucle y suma solo los importes positivos (ingresos).
@@ -122,4 +122,65 @@ function filtrarPorCategoria() {
     const filtrados = movimientos.filter(mov => mov.categoria === categoriaSeleccionada);
     pintarTabla(filtrados);
   }
+}
+// NIVEL 05 // Estadísticas con reduce
+
+
+/**
+ * Calcula el total gastado usando el método reduce.
+ * @returns {number}
+ */
+function calcularTotalGastadoReduce() {
+  return movimientos.reduce((total, mov) => {
+    return mov.importe < 0 ? total + Math.abs(mov.importe) : total;
+  }, 0);
+}
+
+/**
+ * Agrupa los gastos por categoría usando reduce.
+ * @returns {Object} Objeto con clave de categoría y valor con el gasto acumulado
+ */
+function obtenerGastosPorCategoria() {
+  return movimientos.reduce((acumulador, mov) => {
+    if (mov.importe < 0) {
+      const gastoPositivo = Math.abs(mov.importe);
+      const cat = mov.categoria;
+      
+      if (!acumulador[cat]) {
+        acumulador[cat] = 0;
+      }
+      acumulador[cat] += gastoPositivo;
+    }
+    return acumulador;
+  }, {});
+}
+
+/**
+ * Determina la categoría en la que más dinero se ha gastado.
+ * @returns {string} Nombre de la categoría con más gasto
+ */
+function obtenerCategoriaConMasGasto() {
+  const gastosPorCat = obtenerGastosPorCategoria();
+  let maxGasto = 0;
+  let catMax = "Ninguno";
+
+  for (const cat in gastosPorCat) {
+    if (gastosPorCat[cat] > maxGasto) {
+      maxGasto = gastosPorCat[cat];
+      catMax = `${cat} (${formatearDinero(maxGasto)})`;
+    }
+  }
+
+  return catMax;
+}
+
+/**
+ * Actualiza los elementos de resumen y estadísticas en el DOM.
+ */
+function pintarEstadisticas() {
+  document.getElementById("lbl-titular").textContent = titularCuenta;
+  document.getElementById("val-saldo").textContent = formatearDinero(saldoActual());
+  document.getElementById("val-ingresos").textContent = formatearDinero(totalIngresos());
+  document.getElementById("val-gastos").textContent = formatearDinero(totalGastos());
+  document.getElementById("val-top-categoria").textContent = obtenerCategoriaConMasGasto();
 }
