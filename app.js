@@ -184,3 +184,65 @@ function pintarEstadisticas() {
   document.getElementById("val-gastos").textContent = formatearDinero(totalGastos());
   document.getElementById("val-top-categoria").textContent = obtenerCategoriaConMasGasto();
 }
+// NIVEL 06 // Reto final: interacción completa
+
+
+/**
+ * Refresca la interfaz completa (tabla y estadísticas).
+ */
+function refrescar() {
+  filtrarPorCategoria(); // Mantiene el filtro aplicado o muestra todos
+  pintarEstadisticas();
+}
+
+/**
+ * Elimina un movimiento del array por su ID y refresca la interfaz.
+ * @param {number} id 
+ */
+function borrarMovimiento(id) {
+  // Uso del método filter para eliminar el elemento por id
+  movimientos = movimientos.filter(mov => mov.id !== id);
+  refrescar();
+}
+
+// Inicialización de escuchadores de eventos
+document.addEventListener("DOMContentLoaded", () => {
+  
+  // Escuchador para el filtro de categorías
+  document.getElementById("filtro-categoria").addEventListener("change", filtrarPorCategoria);
+
+  // Escuchador para el formulario de añadir movimiento
+  document.getElementById("form-movimiento").addEventListener("submit", function(e) {
+    e.preventDefault(); // Evita que la página se recargue
+
+    const conceptoInput = document.getElementById("concepto").value.trim();
+    const importeInput = parseFloat(document.getElementById("importe").value);
+    const categoriaInput = document.getElementById("categoria").value;
+    const fechaInput = document.getElementById("fecha").value;
+
+    // Validación
+    if (!conceptoInput || isNaN(importeInput) || !categoriaInput || !fechaInput) {
+      alert("Por favor, completa todos los campos correctamente.");
+      return;
+    }
+
+    // Creación del nuevo objeto movimiento
+    const nuevoMovimiento = {
+      id: Date.now(), // ID único basado en timestamp
+      concepto: conceptoInput,
+      importe: importeInput,
+      categoria: categoriaInput,
+      fecha: fechaInput
+    };
+
+    // Añadir al array
+    movimientos.push(nuevoMovimiento);
+
+    // Refrescar interfaz y limpiar formulario
+    refrescar();
+    this.reset();
+  });
+
+  // Carga inicial
+  refrescar();
+});
