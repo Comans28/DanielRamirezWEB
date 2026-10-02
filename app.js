@@ -18,3 +18,15 @@ function formatearDinero(cantidad) {
   return cantidad.toFixed(2).replace('.', ',') + " " + simboloMoneda;
 }
 
+// NIVEL 02 // El modelo de datos: array de objetos
+
+
+// Array de objetos de movimientos. Ingresos en positivo, gastos en negativo.
+let movimientos = [
+  { id: 1, concepto: "Nómina de Trabajo", importe: 1500.00, categoria: "Nómina", fecha: "2026-10-01" },
+  { id: 2, concepto: "Supermercado Mercadona", importe: -68.40, categoria: "Comida", fecha: "2026-10-02" },
+  { id: 3, concepto: "Cena con Amigos", importe: -32.50, categoria: "Ocio", fecha: "2026-10-03" },
+  { id: 4, concepto: "Gasolina Coche", importe: -50.00, categoria: "Transporte", fecha: "2026-10-04" },
+  { id: 5, concepto: "Venta Guitarra Segunda Mano", importe: 200.00, categoria: "Otros", fecha: "2026-10-05" },
+  { id: 6, concepto: "Factura de Luz", importe: -85.20, categoria: "Hogar", fecha: "2026-10-06" }
+];
