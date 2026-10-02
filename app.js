@@ -68,3 +68,58 @@ function totalGastos() {
 function saldoActual() {
   return saldoInicial + totalIngresos() + totalGastos();
 }
+// NIVEL 04 // Métodos de array: filtrar y transformar
+
+
+/**
+ * Pinta los movimientos recibidos en la tabla HTML del DOM.
+ * @param {Array} listaMovimientos - Array de movimientos a mostrar
+ */
+function pintarTabla(listaMovimientos) {
+  const tbody = document.getElementById("tbody-movimientos");
+  tbody.innerHTML = ""; // Limpiar contenido previo
+
+  listaMovimientos.forEach((mov) => {
+    const fila = document.createElement("tr");
+
+    // Formatear el importe con la clase de color según corresponda (verde/rojo)
+    const claseMonto = mov.importe >= 0 ? "monto-ingreso" : "monto-gasto";
+    const signo = mov.importe > 0 ? "+" : "";
+
+    fila.innerHTML = `
+      <td>${mov.fecha}</td>
+      <td>${mov.concepto}</td>
+      <td>${mov.categoria}</td>
+      <td class="${claseMonto}">${signo}${formatearDinero(mov.importe)}</td>
+      <td>
+        <button class="btn-borrar" data-id="${mov.id}">Borrar</button>
+      </td>
+    `;
+
+    tbody.appendChild(fila);
+  });
+
+  // Asignar los eventos de borrado a los botones recién creados
+  const botonesBorrar = document.querySelectorAll(".btn-borrar");
+  botonesBorrar.forEach(boton => {
+    boton.addEventListener("click", function() {
+      const idParaBorrar = parseInt(this.getAttribute("data-id"));
+      borrarMovimiento(idParaBorrar);
+    });
+  });
+}
+
+/**
+ * Filtra los movimientos según la categoría seleccionada en el desplegable.
+ */
+function filtrarPorCategoria() {
+  const categoriaSeleccionada = document.getElementById("filtro-categoria").value;
+  
+  if (categoriaSeleccionada === "TODAS") {
+    pintarTabla(movimientos);
+  } else {
+    // Uso del método filter
+    const filtrados = movimientos.filter(mov => mov.categoria === categoriaSeleccionada);
+    pintarTabla(filtrados);
+  }
+}
