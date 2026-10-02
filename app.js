@@ -30,3 +30,41 @@ let movimientos = [
   { id: 5, concepto: "Venta Guitarra Segunda Mano", importe: 200.00, categoria: "Otros", fecha: "2026-10-05" },
   { id: 6, concepto: "Factura de Luz", importe: -85.20, categoria: "Hogar", fecha: "2026-10-06" }
 ];
+// NIVEL 03 // Cálculos con funciones y bucles
+// ==========================================
+
+/**
+ * Recorre el array con un bucle y suma solo los importes positivos (ingresos).
+ * @returns {number} Total de ingresos
+ */
+function totalIngresos() {
+  let acumulador = 0;
+  for (let i = 0; i < movimientos.length; i++) {
+    if (movimientos[i].importe > 0) {
+      acumulador += movimientos[i].importe;
+    }
+  }
+  return acumulador;
+}
+
+/**
+ * Recorre el array con un bucle y suma solo los importes negativos (gastos).
+ * @returns {number} Total de gastos (valor negativo)
+ */
+function totalGastos() {
+  let acumulador = 0;
+  for (let i = 0; i < movimientos.length; i++) {
+    if (movimientos[i].importe < 0) {
+      acumulador += movimientos[i].importe;
+    }
+  }
+  return acumulador;
+}
+
+/**
+ * Devuelve el saldo total sumando el saldo inicial, los ingresos y los gastos.
+ * @returns {number} Saldo actual
+ */
+function saldoActual() {
+  return saldoInicial + totalIngresos() + totalGastos();
+}
